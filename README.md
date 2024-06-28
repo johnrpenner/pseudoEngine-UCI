@@ -1,6 +1,6 @@
 pseudoEngine UCI v0.1 ©johnRolandPenner (June 21, 2024)
 Minimal UCI Asynchronous Timed Engine in Swift
-
+ 
 This Swift Template seeks to address four issues related to UCI implemenation: 
 1) UCI Responds to Terminal Commands using: readLine() and print()
 2) Asynchronous Multi-Threading to allow UCI to respond while Engine Processes
