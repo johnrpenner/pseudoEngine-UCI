@@ -1,4 +1,4 @@
-pseudoEngine UCI v0.1 ©johnRolandPenner (June 21, 2024)
+pseudoEngine UCI v0.2 ©johnRolandPenner (August 6, 2024)
 Minimal UCI Asynchronous Timed Engine in Swift
  
 This Swift Template seeks to address four issues related to UCI implemenation: 
@@ -12,7 +12,7 @@ This Swift Template seeks to address four issues related to UCI implemenation:
 uci
 id name pseudoEngine 0.1
 author johnRolandPenner
-option name UCI_EngineAbout type string default pseudoEngine 0.1 by rdp
+option name UCI_EngineAbout type string default pseudoEngine 0.2 by rdp
 uciok
 isready
 readyok
