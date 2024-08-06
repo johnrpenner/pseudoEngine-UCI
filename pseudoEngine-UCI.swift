@@ -1,4 +1,4 @@
-// pseudoEngine UCI v0.1 ©johnRolandPenner (June 21, 2024)
+// pseudoEngine UCI v0.2 ©johnRolandPenner (August 6, 2024)
 // Minimal UCI Asynchronous Timed Engine in Swift
 // 
 //  This Swift Template seeks to address four issues related to UCI implemenation: 
@@ -14,11 +14,13 @@ class pseudoEngine {
 	
 	private var predefinedMoves : [String] = ["e7e5", "d7d5", "g8f6", "c7c5", "b8c6", "a7a6", "h7h6"]
 	private var currentMoveIndex = 0
+		
 	
 	// Asynchronous Queue to Handle UCI Commands
 	private let queue = DispatchQueue(label: "peaBrain.queue", attributes: .concurrent)
 	
 	// Timer Termination Flag
+	private let gTimer = 5.0					// 5.0 seconds
 	private var shouldTerminate = false 
 	
 	
@@ -114,9 +116,10 @@ class pseudoEngine {
 			
 		// end processMove()
 		}
-
 	
-	// Setup 5 second Timer to Simulate NegaSearch()
+	
+	/*
+	// Setup 5 second Timer to Simulate NegaSearch() > NOT WORKING!!
 	private func startTimer() {
 		let timer = DispatchSource.makeTimerSource(queue: queue)
 		timer.schedule(deadline: .now() + 5.0)
@@ -125,7 +128,28 @@ class pseudoEngine {
 			}
 		timer.activate()
 	}
+	*/
 	
+	
+	// Setup Asynchronous Timer JRP
+	private func startTimer() {
+		DispatchQueue.global(qos: .default).async(execute: {() -> Void in
+			let nixieTimer = Timer.scheduledTimer(timeInterval: self.gTimer, 
+				target: self, selector: #selector(self.terminateTimer), userInfo: nil, repeats: false)
+				RunLoop.current.add(nixieTimer, forMode: RunLoop.Mode.default)
+				RunLoop.current.run()
+				})
+		
+		return
+	}
+	
+	@objc func terminateTimer() {
+		self.shouldTerminate = true
+		//JRP > find: we should do nixieTimer.invalidate()
+		print("Timer Terminated")
+		return
+	}
+
 }
 
 
