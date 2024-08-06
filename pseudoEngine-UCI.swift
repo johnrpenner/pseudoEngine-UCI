@@ -79,9 +79,9 @@ class pseudoEngine {
 	
 	
 	private func sendUCIResponse() {
-		print("id name pseudoEngine 0.1")
+		print("id name pseudoEngine 0.2")
 		print("author johnRolandPenner")
-		print("option name UCI_EngineAbout type string default pseudoEngine 0.1 by rdp")
+		print("option name UCI_EngineAbout type string default pseudoEngine 0.2 by rdp")
 		print("uciok")
 		fflush(__stdoutp)
 	}
